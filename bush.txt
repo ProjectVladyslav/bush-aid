@@ -1,0 +1,227 @@
+	Команда bash — це найменша одиниця коду, яку bash може виконати. За допомогою команд ми повідомляємо шеллу, що нам потрібно, щоб він зробив. bash зазвичай приймає від користувача одну команду та повертається до нього після того, як команда буде виконана. 
+Приклади команд bash			
+	Команда echo — повертає все, що ви вводиться в командному рядку:
+
+        admin@MacBook-Vladdislove ~ % echo "hello"
+        hello
+
+	Команда date — відображає поточну дату та час:
+        
+        admin@MacBook-Vladdislove ~ % date
+        пн 28 сер 2023 11:52:59 EEST
+
+	Команда pwd (скор. від «print working directory») — вказує на поточний робочий каталог, в якому команди шелла шукатимуть файли.
+
+        admin@MacBook-Vladdislove ~ % pwd
+        /Users/admin
+
+    Команда ls (скор. від «list») — відображає вміст каталогу. Зазвичай команда ls починає з перегляду домашнього каталогу. Це означає, що якщо ми просто введемо ls, то дана команда виведе вміст поточного каталогу, яким в нашому випадку є домашній каталог /Users/admin:
+
+        admin@MacBook-Vladdislove ~ % ls
+        Creative Cloud Files	Google Drive		Pictures
+        Desktop			Library			Public
+        Documents		Movies
+        Downloads		Music
+
+	Команда cd (скор. від «change directory») — змінює поточну директорію на задану користувачем. Розглянемо декілька прикладів використання цієї команди:
+
+        admin@MacBook-Vladdislove ~ % cd Music
+        admin@MacBook-Vladdislove Music % 
+
+*    cd .. — повернутися в батьківський каталог.
+*    cd — повернутися в домашній каталог.
+
+    Команда mkdir (скор. від «make directory») — створює новий каталог.
+       
+        admin@MacBook-Vladdislove music % mkdir RedHotChilipepers
+        admin@MacBook-Vladdislove music % ls
+        Music			Nirvana			RedHotChilipepers
+
+    Команда mv (скор. від «move») — переміщує один або кілька файлів/каталогів з одного місця до іншого (яке задане користувачем). Для цього потрібно вказати, що ми хочемо перемістити (тобто джерело), і куди ми хочемо перемістити (тобто пункт призначення).
+
+        [admin@MacBook-Vladdislove music % mv /Users/admin/Music/Nirvana /Users/admin/Music/RedHotChilipepers
+        admin@MacBook-Vladdislove music % ls
+        Music			RedHotChilipepers
+        admin@MacBook-Vladdislove music % cd RedHotChilipepers
+        admin@MacBook-Vladdislove RedHotChilipepers % ls
+        Nirvana
+
+    Команда touch — створює нові порожні файли (а також змінює тимчасові мітки в існуючих файлах та каталогах). Ось як ми можемо створити порожній файл під назвою foo.txt у папці Ravesli з домашнього каталогу:
+
+        admin@MacBook-Vladdislove RedHotChilipepers % touch list.txt
+        admin@MacBook-Vladdislove RedHotChilipepers % ls
+        Nirvana		list.txt
+        admin@MacBook-Vladdislove RedHotChilipepers % 
+
+    Команда rm (скор. від «remove») — видаляє файли/каталоги. За замовчуванням, команда rm НЕ видаляє каталоги, але якщо використовується як rm -r * всередині вказаного каталогу, то кожний підкаталог та файл всередині заданого каталогу — видаляються.
+Давайте видалимо раніше створений файл list.txt.:
+    
+		admin@MacBook-Vladdislove RedHotChilipepers % rm list.txt
+		admin@MacBook-Vladdislove RedHotChilipepers % ls
+		Nirvana
+		
+	Команда rmdir (скор. від «remove directory») — видаляє каталоги.
+
+        admin@MacBook-Vladdislove RedHotChilipepers % rmdir nirvana
+        admin@MacBook-Vladdislove RedHotChilipepers % ls
+        admin@MacBook-Vladdislove RedHotChilipepers % 
+
+	Команда cat (скор. від «concatenate») — зчитує файл та виводить його вміст. Команда може працювати з декількома файлами, об’єднуючи їх вивід в єдиний потік (звідси і назва). У мене в домашньому каталозі є папка untitled з файлами С++/Qt-проекту, і нижче я використовую команду cat для перегляду вмісту файлу main.cpp з untitled:
+
+        admin@MacBook-Vladdislove tailwind % cat package-lock.json
+        {
+          "name": "cryptoprofitai",
+          "version": "1.0.0",
+          "lockfileVersion": 3,
+          "requires": true,
+          "packages": {
+            "": {
+              "name": "cryptoprofitai",
+              "version": "1.0.0",
+              "license": "ISC",
+                ....
+
+* Щоб переглянути декілька файлів, вкажіть один за одним (через пробіл) імена потрібних файлів після команди cat, наприклад:
+
+	admin@MacBook-Vladdislove tailwind % cat package-lock.json tailwind-cons.json
+
+
+Команда man (скор. від “manual”) — відображає довідкові сторінки, які є посібником користувача, вбудованим за замовчуванням у деякі дистрибутиви Linux та більшість Unix-систем. Наприклад, команда man bash відобразить посібник користувача, а команда man ls відобразить довідку по команді ls.
+      
+         admin@MacBook-Vladdislove man ls
+
+LS(1)                       General Commands Manual                      LS(1)
+
+NAME
+     ls – list directory contents
+
+SYNOPSIS
+     ls [-@ABCFGHILOPRSTUWabcdefghiklmnopqrstuvwxy1%,] [--color=when]
+        [-D format] [file ...]
+
+DESCRIPTION
+...
+
+
+								Редактор nano
+
+    nano — це маленький, простий, консольний текстовий редактор *nix-подібних операційних систем, що вперше побачив світ у далекому 1999 році. Для запуску редактора достатньо ввести в терміналі лише одну команду — nano. Якщо ж потрібно відредагувати якийсь конкретний файл, застосовується команда nanо /<шлях_до_файлу/<ім'я_файлу>. Відмінною рисою даного редактора є можливість використання “гарячих клавіш”. Наприклад, для збереження поточного документа застосовується комбінація control+O, для виклику меню пошуку — control+W, для виходу з редактора — control+X, а для отримання всього списку доступних клавіш — control+G.
+
+							Написання SH скрипта
+Щоб створити новий файл bash-скрипта, відкрийте текстовий файл у будь-якому редакторі і збережіть його з розширенням .sh. Створив новий файл command.s	h:
+
+		admin@MacBook-Vladdislove ~ % cd desktop
+		admin@MacBook-Vladdislove desktop % touch command.sh
+		admin@MacBook-Vladdislove desktop % ls -l
+		total 0
+		drwxr-xr-x  3 admin  staff  96 10 сер 00:55 Visual Studio Code.app
+		-rw-r--r--@ 1 admin  staff   0 28 сер 13:12 command.sh
+
+Щоб виконати файл bash-скрипта, потрібно змінити права доступу до файлу і зробити його виконуваним. Права доступу, змінюються командою chmod +x <ім'я_файлу>:
+
+		admin@MacBook-Vladdislove desktop % chmod +x command.sh
+		admin@MacBook-Vladdislove desktop % ls -l
+		total 0
+		drwxr-xr-x  3 admin  staff  96 10 сер 00:55 Visual Studio Code.app
+		-rwxr-xr-x@ 1 admin  staff   0 28 сер 13:12 command.sh
+
+Відкриваємо command.sh за допомогою nano і в ньому вписуємо команди, для тесту я вписав  		echo "Hello BASH"
+		echo "This command run by bush script"
+
+Зберігаю за допомогою control + 0 Далі запускаю sh script і отримуй результат в терміналі.                             		bash-3.2$ ./command.sh
+            Hello BASH
+            This command run by bush script
+
+В скриптах sh можна створювати зміні і взаємодіяти з ними, коментарі робляться за допомогою #
+
+        #оголошення зміної
+        var_test="Вітаю , скрипт command.sh запущено."
+        echo $var_test
+        
+        #додавання зміних
+        var1=10                             
+        var2=20
+        var3=$(($var1+$var2))
+        echo "Сум $var3"
+
+
+RESULT :
+
+       bash-3.2$ ./command.sh
+        Вітаю , скрипт command.sh запущено.
+        Сумм 30
+
+*** НЕМАЄ БУТИ НІЯКИХ ПРОБІЛІВ БІЛЯ ЗМІН , var = 1 !!! тільки var=1 !!   										Умовний оператор if
+	Умовні оператори bash використовуються для прийняття рішень. В умовних операторах обчислюється конкретна умова. Якщо умова істинна (true), виконується перший блок коду. В протилежному випадку (false) виконується другий блок коду.
+	Можна обчислити одну або кілька умов усередині блоку if за допомогою операторів OR (||) та AND (&&). У bash блок if починається з ключового слова if і закінчується ключовим словом fi. Якщо задана умова помилкова, то виконується блок else.
+	Для перевірки типу “менше, ніж” застосовується запис –lt, для “більше, ніж” — запис -gt, а для перевірки на “рівно” — запис -eq:
+	
+	Аналогічно, ми можемо використовувати умови OR (||) та AND (&&) всередині блоку if для обчислення кількох умов. Давайте розглянемо приклад оператора OR:
+
+		#!/bin/bash
+ 
+		#оголошення змінної
+			VAR=7
+ 
+		#використовуємо оператор AND в if-умові
+			if [[ ( $VAR -gt 5 ) && ( $VAR -lt 10 ) ]]
+		then
+			echo "Были выполнены оба условия"
+		else
+			echo "Условия не были выполнены"
+		fi
+
+
+											Оператор else if
+	Оператор else if використовується для обчислення декількох умов. Для визначення оператора else if використовується ключове слово elif.
+
+        echo «write num»
+        read num
+         
+        #оголошуємо змінну
+        if [ $num -gt 10 ];
+        then
+        	echo "num > 10"
+        elif [ $num -eq 10 ];
+        then
+        	echo "num = 10."
+        elif [ $num -lt 10 ];
+        then
+        	echo "num < 10"
+         
+        else
+        	echo "uncorrect num"
+        fi
+
+
+												Цикл while
+Цикл while використовується для багаторазового виконання коду. Він обчислює умову і продовжує виконання доти, доки умова не стане помилковою. Синтаксис циклу while в bash виглядає наступним чином:
+        while [умова]         do         команди         done
+Якщо [умова] істинна, виконується блок do.
+
+        #!/bin/bash
+         
+        #оголошуємо змінну
+        VAR=1
+        while [ $VAR -le 10 ]
+        do
+               echo "Значение переменной =  $VAR"
+         
+               #збільшуємо значення змінної на 1
+               (( VAR++ ))
+        done
+
+													Цикл for
+Цикл for також застосовується для багаторазового виконання одного й того ж блоку коду. Синтаксис циклу for bash виглядає наступним чином:
+        for ((оголошення_змінних; умова; інкремент/декремент_лічильника))         do         команди         done
+
+        #!/bin/bash
+         
+        #оголошуємо цикл for
+        for ((i=0; i<10; i++))
+        do
+          #виводимо на екран значення змінної
+          echo -n "$i "
+        done
+         
+        echo "\n"
